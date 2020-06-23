@@ -101,7 +101,7 @@ function handleMessage(sender_psid, message) {
         return;
     }
 
-    let entitiesArr = ["sobre", "obrigado", "tchau"];
+    let entitiesArr = ["greetings", "thanks", "bye"];
     let entityChosen = "";
     entitiesArr.forEach((name) => {
         let entity = firstEntity(message.nlp, name);
@@ -112,19 +112,19 @@ function handleMessage(sender_psid, message) {
 
     if (entityChosen === "") {
         //default
-        callSendAPI(sender_psid, `Oi, eu ainda não consegui te entender porque não fui treinado, mas em breve traremos novidades e eu poderei te dar maior suporte.`);
+        callSendAPI(sender_psid, `Oi, ainda não fui treinado, mas em breve traremos novidades e eu poderei te dar maior suporte.`);
     } else {
-        if (entityChosen === "sobre") {
+        if (entityChosen === "greetings") {
             //send greetings message
-            callSendAPI(sender_psid, `Oi. Eu sou o chatbot criado para demonstração!`);
+            callSendAPI(sender_psid, 'Oi! Seja bem vindo(a)!');
         }
-        if (entityChosen === "Obrigado") {
+        if (entityChosen === "thanks") {
             //send thanks message
-            callSendAPI(sender_psid, `Que isso! Eu fico sem jeito`);
+            callSendAPI(sender_psid, `You 're welcome!`);
         }
-        if (entityChosen === "tchau") {
+        if (entityChosen === "bye") {
             //send bye message
-            callSendAPI(sender_psid, 'tchau');
+            callSendAPI(sender_psid, 'bye-bye!');
         }
     }
 }
