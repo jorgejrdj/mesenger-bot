@@ -112,7 +112,7 @@ function handleMessage(sender_psid, message) {
 
     if (entityChosen === "") {
         //default
-        callSendAPI(sender_psid, `Oi, eu ainda não consegui te entender porque não fui treinado, mas em breve traremos novidades e eu poderei te dar maior suporte. Pensa em mim que eu to pensando em você`);
+        callSendAPI(sender_psid, `Oi, eu ainda não consegui te entender porque não fui treinado, mas em breve traremos novidades e eu poderei te dar maior suporte.`);
     } else {
         if (entityChosen === "sobre") {
             //send greetings message
