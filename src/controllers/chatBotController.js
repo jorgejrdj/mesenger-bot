@@ -1,6 +1,7 @@
 require("dotenv").config();
 import request from "request";
 
+//Trechos de código extraído do site do FaceBook Developes
 let postWebhook = (req, res) => {
     // Parse the request body from the POST
     let body = req.body;
@@ -39,95 +40,27 @@ let postWebhook = (req, res) => {
     }
 };
 
+//Trechos de código extraído do site do FaceBook Developes
 let getWebhook = (req, res) => {
-    // Your verify token. Should be a random string.
+    // Seu token de Verificação.
     let VERIFY_TOKEN = process.env.MY_VERIFY_FB_TOKEN;
 
-    // Parse the query params
     let mode = req.query['hub.mode'];
     let token = req.query['hub.verify_token'];
     let challenge = req.query['hub.challenge'];
 
-    // Checks if a token and mode is in the query string of the request
     if (mode && token) {
 
-        // Checks the mode and token sent is correct
         if (mode === 'subscribe' && token === VERIFY_TOKEN) {
 
-            // Responds with the challenge token from the request
             console.log('WEBHOOK_VERIFIED');
             res.status(200).send(challenge);
 
         } else {
-            // Responds with '403 Forbidden' if verify tokens do not match
             res.sendStatus(403);
         }
     }
 };
-
-// Handles messages events
-// function handleMessage(sender_psid, received_message) {
-//     let response;
-//
-//     // Check if the message contains text
-//     if (received_message.text) {
-//
-//         // Create the payload for a basic text message
-//         response = {
-//             "text": `You sent the message: "${received_message.text}". Now send me an image!`
-//         }
-//     } else if (received_message.attachments) {
-//
-//     // Gets the URL of the message attachment
-//     let attachment_url = received_message.attachments[0].payload.url;
-//         response = {
-//             "attachment": {
-//                 "type": "template",
-//                 "payload": {
-//                     "template_type": "generic",
-//                     "elements": [{
-//                         "title": "Is this the right picture?",
-//                         "subtitle": "Tap a button to answer.",
-//                         "image_url": attachment_url,
-//                         "buttons": [
-//                             {
-//                                 "type": "postback",
-//                                 "title": "Yes!",
-//                                 "payload": "yes",
-//                             },
-//                             {
-//                                 "type": "postback",
-//                                 "title": "No!",
-//                                 "payload": "no",
-//                             }
-//                         ],
-//                     }]
-//                 }
-//             }
-//         }
-//
-// }
-//
-// // Sends the response message
-//     callSendAPI(sender_psid, response);
-// }
-
-// Handles messaging_postbacks events
-function handlePostback(sender_psid, received_postback) {
-    let response;
-
-    // Get the payload for the postback
-    let payload = received_postback.payload;
-
-    // Set the response based on the postback payload
-    if (payload === 'yes') {
-        response = { "text": "Thanks!" }
-    } else if (payload === 'no') {
-        response = { "text": "Oops, try sending another image." }
-    }
-    // Send the message to acknowledge the postback
-    callSendAPI(sender_psid, response);
-}
 
 // Sends response messages via the Send API
 function callSendAPI(sender_psid, response) {
@@ -168,7 +101,7 @@ function handleMessage(sender_psid, message) {
         return;
     }
 
-    let entitiesArr = ["greetings", "thanks", "bye"];
+    let entitiesArr = ["sobre", "obrigado", "tchau"];
     let entityChosen = "";
     entitiesArr.forEach((name) => {
         let entity = firstEntity(message.nlp, name);
@@ -179,23 +112,24 @@ function handleMessage(sender_psid, message) {
 
     if (entityChosen === "") {
         //default
-        callSendAPI(sender_psid, `Oi, ainda não fui treinado, mas em breve traremos novidades e eu poderei te dar maior suporte. Pensa em mim que eu to pensando em você`);
+        callSendAPI(sender_psid, `Oi, eu ainda não consegui te entender porque não fui treinado, mas em breve traremos novidades e eu poderei te dar maior suporte. Pensa em mim que eu to pensando em você`);
     } else {
-        if (entityChosen === "greetings") {
+        if (entityChosen === "sobre") {
             //send greetings message
-            callSendAPI(sender_psid, 'Hi there! This bot is created by Hary Pham. Watch more videos on HaryPhamDev Channel!');
+            callSendAPI(sender_psid, `Oi. Eu sou o chatbot criado para demonstração!`);
         }
-        if (entityChosen === "thanks") {
+        if (entityChosen === "Obrigado") {
             //send thanks message
-            callSendAPI(sender_psid, `You 're welcome!`);
+            callSendAPI(sender_psid, `Que isso! Eu fico sem jeito`);
         }
-        if (entityChosen === "bye") {
+        if (entityChosen === "tchau") {
             //send bye message
-            callSendAPI(sender_psid, 'bye-bye!');
+            callSendAPI(sender_psid, 'tchau');
         }
     }
 }
 
+//Essa parte manda o link com foto personalizada
 let callSendAPIWithTemplate = (sender_psid) => {
     // document fb message template
     // https://developers.facebook.com/docs/messenger-platform/send-messages/templates
@@ -212,7 +146,7 @@ let callSendAPIWithTemplate = (sender_psid) => {
                         {
                             "title": "Want to build sth awesome?",
                             "image_url": "https://www.nexmo.com/wp-content/uploads/2018/10/build-bot-messages-api-768x384.png",
-                            "subtitle": "Watch more videos on my youtube channel ^^",
+                            "subtitle": "Tenha mais informações no portal da Unisanta",
                             "buttons": [
                                 {
                                     "type": "web_url",
