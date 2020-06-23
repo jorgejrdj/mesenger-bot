@@ -144,9 +144,9 @@ let callSendAPIWithTemplate = (sender_psid) => {
                     "template_type": "generic",
                     "elements": [
                         {
-                            "title": "Want to build sth awesome?",
+                            "title": "Que tal dar um start no seu sonho?",
                             "image_url": "https://www.nexmo.com/wp-content/uploads/2018/10/build-bot-messages-api-768x384.png",
-                            "subtitle": "Tenha mais informações no portal da Unisanta",
+                            "subtitle": "Que tal dar um start na sua carreira com os melhores profissionais do mercado? Tenha mais informações no portal da Unisanta",
                             "buttons": [
                                 {
                                     "type": "web_url",
