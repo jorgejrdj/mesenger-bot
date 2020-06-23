@@ -1,23 +1,11 @@
-# messenger-bot-nodejs
-- A simple Facebook Messenger Chatbot using Mesenger Platform (Node.js)
-- Test this bot (this project) now : https://my-chatbot-haryphamdev.herokuapp.com/
-- Guide to set up this project: https://www.youtube.com/watch?v=h-JqLlNTfrc
-- Full tutorial: https://www.youtube.com/watch?v=h-JqLlNTfrc&list=PLNOjHC_BXrfB8DcOCHtKPWPMl4t9PG5cI&index=2&t=0s
+# Messenger Bot
+- Usei como base para criação deste projeto o seguiinte vídeo: https://www.youtube.com/watch?v=h-JqLlNTfrc
 
-## How to run this project ? 
+## Não esqueça que... 
+-É necessário instalar os pacotes para suporte do projeto. No terminal, digite `npm install`
+-Necessário a criação de um arquivo `.env`, para inserção da Porta de conexão, o endereço do Token do Facebook e a sua verificação da página. Assista o vídeo para maiores informações
+-É necessário fazer o Deploy da Aplicação. Aqui usamos o Heroku e configuramos as dependências.
 
-You can set up this project by following these steps below or an easier way, I created a video to set up this project ( Watch my video: https://www.youtube.com/watch?v=h-JqLlNTfrc )
-### 1. Clone this project
-- Copy file .env.example -> create a .env file at the root folder -> fill all app variables in the .evn file
-- Run the "npm install" to test project at the localhost
-
-### 2. Create a Heroku app, a Facebook Page, a Facebook App.
-#### 2.1 Create a Heroku app
-- Deploy app to Heroku
-- Config env variables (setup dev dependencies)
-#### 2.2 Facebook Page
-- Create a Facebook Page
-- Config Whitelisted Domains (add the Heroku app domain)
-#### 2.3 Facebook App
-- Create a Facebook App
-- Config webhook
+## No Facebook
+- É necessário ter uma página no facebook e configurar o webhooks
+-É necessário a configuração do Whitelisted Domains, inserindo o endereço para comunicação com o Heroku.
